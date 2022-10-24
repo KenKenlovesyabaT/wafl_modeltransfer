@@ -98,9 +98,9 @@ int main(int argc, char *argv[]) {
     }
 
     // 絶対パスを生成
-    // if (sprintf(filename, "/home/elab/udp/log/send-n%d-%s.txt", self_id, date) < 0) {
+    if (sprintf(filename, "/home/elab/udp/log/send_n%d_%s.txt", self_id, date) < 0) {
     // 自宅pc用
-    if (sprintf(filename, "/home/kentaro/kenkyu/wafl_modeltransfer/log/send_n%d_%s.txt", self_id, date) < 0) {
+    // if (sprintf(filename, "/home/kentaro/kenkyu/wafl_modeltransfer/log/send_n%d_%s.txt", self_id, date) < 0) {
         perror("sprintf");
         exit(EXIT_FAILURE);
     }
