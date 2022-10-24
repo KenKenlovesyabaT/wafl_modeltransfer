@@ -80,9 +80,9 @@ int main(int argc, char *argv[]) {
 
     /* 自ip addrの取得(ログファイルに書かないため) */
     ifr.ifr_addr.sa_family = AF_INET;
-    // strncpy(ifr.ifr_name, "wlan0", IFNAMSIZ-1);
-    // 自宅pc用j
-    strncpy(ifr.ifr_name, "wlp2s0", IFNAMSIZ-1);
+    strncpy(ifr.ifr_name, "wlan0", IFNAMSIZ-1);
+    // 自宅pc用
+    // strncpy(ifr.ifr_name, "wlp2s0", IFNAMSIZ-1);
     ioctl(sd, SIOCGIFADDR, &ifr);
     struct sockaddr_in *tmp_ifr = (struct sockaddr_in *) &ifr.ifr_addr;
 
