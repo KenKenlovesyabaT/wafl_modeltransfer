@@ -40,8 +40,8 @@ int main(int argc, char *argv[]) {
     time_t t;
     struct tm* tmp;
     uint8_t self_id;
-    char date[50];
-    char filename[100];
+    char date[25];
+    char filename[200];
     FILE *log_fp;
     struct ifreq ifr;
 
@@ -80,7 +80,9 @@ int main(int argc, char *argv[]) {
 
     /* 自ip addrの取得(ログファイルに書かないため) */
     ifr.ifr_addr.sa_family = AF_INET;
-    strncpy(ifr.ifr_name, "wlan0", IFNAMSIZ-1);
+    // strncpy(ifr.ifr_name, "wlan0", IFNAMSIZ-1);
+    // 自宅pc用j
+    strncpy(ifr.ifr_name, "wlp2s0", IFNAMSIZ-1);
     ioctl(sd, SIOCGIFADDR, &ifr);
     struct sockaddr_in *tmp_ifr = (struct sockaddr_in *) &ifr.ifr_addr;
 
@@ -90,13 +92,15 @@ int main(int argc, char *argv[]) {
 
     // 日付をdateに出力
     // if (strftime(date, sizeof(date) - 1, "%m-%d-%H-%M", tmp) == 0) {
-    if (strftime(date, sizeof(date) - 1, "%d", tmp) == 0) {
+    if (strftime(date, sizeof(date) - 1, "mon%m_d%d_h%H_min%M", tmp) == 0) {
         perror("strftime");
         exit(EXIT_FAILURE);
     }
 
     // 絶対パスを生成
-    if (sprintf(filename, "/home/elab/udp/log/send-n%d-%s.txt", self_id, date) < 0) {
+    // if (sprintf(filename, "/home/elab/udp/log/send-n%d-%s.txt", self_id, date) < 0) {
+    // 自宅pc用
+    if (sprintf(filename, "/home/kentaro/kenkyu/wafl_modeltransfer/log/send_n%d_%s.txt", self_id, date) < 0) {
         perror("sprintf");
         exit(EXIT_FAILURE);
     }
