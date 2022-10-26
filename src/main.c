@@ -12,8 +12,8 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    // // 乱数シード設定
-    // srand((unsigned)time(NULL));
+    // 乱数シード設定
+    srand((unsigned)time(NULL));
 
     // 受信プログラムのfork, exec
     pid_t recv_pid = fork();
@@ -30,8 +30,12 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    //受信開始から送信開始まで10秒待つ
-    unsigned int wait_sec = 10;
+    /* 5~7秒のインターバル */
+    // ここの演算がボトルネックになっている可能性？
+    unsigned int wait_sec = (rand() % 3) + 7;
+
+    // //受信開始から送信開始まで10秒待つ
+    // unsigned int wait_sec = 10;
     sleep(wait_sec);
 
     // 送信プログラムのfork, exec
