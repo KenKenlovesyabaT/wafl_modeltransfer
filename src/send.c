@@ -142,9 +142,18 @@ int main(int argc, char *argv[]) {
             }
             // printf("epoch %d: sent fragment %d.\n", epoch ,fragment_num);
             fragment_num++;
-            usleep(INTERVAL);
+            //これが何か悪さをしている可能性？
+            //usleep(INTERVAL);
         }
-        fprintf(log_fp,"epoch %d: transmission completed.\n", epoch);
+
+        t = time(NULL);
+        tmp = localtime(&t);
+        if (strftime(date, sizeof(date) - 1, "mon%m_d%d_h%H_min%M", tmp) == 0) {
+            perror("strftime");
+            exit(EXIT_FAILURE);
+        }
+        fprintf(log_fp,"epoch %d: transmission completed on %s.\n", epoch, date);
+        // ファイルIOが遅延の原因?
         fflush(log_fp);
         close(fd);
         sleep(wait_sec);

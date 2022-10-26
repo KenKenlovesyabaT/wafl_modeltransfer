@@ -180,7 +180,8 @@ int main(int argc, char *argv[]) {
 
         fprintf(log_fp, "%u,%u,%u\n", node_id, ntohl(*epoch_p), ntohl(*fragment_p));
         // fprintf(log_fp, "%s,%u,%u\n", inet_ntoa(send_sa.sin_addr), ntohl(*epoch_p), ntohl(*fragment_p));
-        fflush(log_fp);
+        // ファイルIOが遅延の原因?
+        // fflush(log_fp);
     }
     close(sd);
     fclose(log_fp);
