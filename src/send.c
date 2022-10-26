@@ -130,8 +130,8 @@ int main(int argc, char *argv[]) {
 
         /* 5~7秒のインターバル */
         // ここの演算がボトルネックになっている可能性？
-        // unsigned int wait_sec = (rand() % 3) + 5;
-        unsigned int wait_sec = 5;
+        unsigned int wait_sec = (rand() % 3) + 5;
+        // unsigned int wait_sec = 5;
 
         while(1) {
             *fragment_p = htonl(fragment_num);

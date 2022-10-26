@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
     } else if(recv_pid == 0) {
         // 子プロセスで別プログラムを実行
         printf("proc_recv started\n");
-        execlp("/home/elab/udp/bin/recv","/home/elab/udp/bin/recv",argv[SEND_RECV_PORT],NULL);
+        execlp("/home/elab/udp/bin/recv_eth","/home/elab/udp/bin/recv_eth",argv[SEND_RECV_PORT],NULL);
         // 自宅pc用
         // execlp("/home/kentaro/kenkyu/wafl_modeltransfer/bin/recv","/home/kentaro/kenkyu/wafl_modeltransfer/bin/recv",argv[SEND_RECV_PORT],NULL);
         perror("receive");
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     } else if(send_pid == 0) {
         // 子プロセスで別プログラムを実行
         printf("proc_send started\n");
-        execlp("/home/elab/udp/bin/send","/home/elab/udp/bin/send",argv[FILE_NAME],argv[DST_IP],argv[SEND_RECV_PORT],NULL);
+        execlp("/home/elab/udp/bin/send_eth","/home/elab/udp/bin/send_eth",argv[FILE_NAME],argv[DST_IP],argv[SEND_RECV_PORT],NULL);
         // 自宅pc用
         // execlp("/home/kentaro/kenkyu/wafl_modeltransfer/bin/send","/home/kentaro/kenkyu/wafl_modeltransfer/bin/send",argv[FILE_NAME],argv[DST_IP],argv[SEND_RECV_PORT],NULL);
         perror("send");

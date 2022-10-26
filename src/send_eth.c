@@ -80,7 +80,10 @@ int main(int argc, char *argv[]) {
 
     /* 自ip addrの取得(ログファイルに書かないため) */
     ifr.ifr_addr.sa_family = AF_INET;
-    strncpy(ifr.ifr_name, "wlan0", IFNAMSIZ-1);
+    // wifi使用時
+    // strncpy(ifr.ifr_name, "wlan0", IFNAMSIZ-1);
+    // Ethernet使用時
+    strncpy(ifr.ifr_name, "eth0", IFNAMSIZ-1);
     // 自宅pc用
     // strncpy(ifr.ifr_name, "wlp2s0", IFNAMSIZ-1);
     ioctl(sd, SIOCGIFADDR, &ifr);
@@ -98,7 +101,7 @@ int main(int argc, char *argv[]) {
     }
 
     // 絶対パスを生成
-    if (sprintf(filename, "/home/elab/udp/log/send_n%d_%s.txt", self_id, date) < 0) {
+    if (sprintf(filename, "/home/elab/udp/log/eth_send_n%d_%s.txt", self_id, date) < 0) {
     // 自宅pc用
     // if (sprintf(filename, "/home/kentaro/kenkyu/wafl_modeltransfer/log/send_n%d_%s.txt", self_id, date) < 0) {
         perror("sprintf");
