@@ -129,6 +129,8 @@ int main(int argc, char *argv[]) {
 
     // 絶対パスを生成
     if (sprintf(filename, "/home/elab/udp/log/recv_n%d_%s.txt", self_id, date) < 0) {
+    // 外での実験
+    // if (sprintf(filename, "/home/elab/udp/log/out_recv_n%d_%s.txt", self_id, date) < 0) {
     // 自宅pc用
     // if (sprintf(filename, "/home/kentaro/kenkyu/wafl_modeltransfer/log/recv_n%d_%s.txt", self_id, date) < 0) {
         printf("error:sprintf\n");

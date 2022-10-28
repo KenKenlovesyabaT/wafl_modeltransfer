@@ -25,7 +25,7 @@ enum {CMD_NAME, FILE_NAME, DST_IP, PORT};
 #define FRAGMENT_SIZE 2048
 #define MAXBUFF FRAGMENT_SIZE+8
 #define PACKET_NUM 400
-#define EPOCH_NUM 1000
+#define EPOCH_NUM 500
 #define INTERVAL 1*1e2 /* UDPパケット送信間隔(単位:microsec) */
 
 int main(int argc, char *argv[]) {
@@ -100,6 +100,8 @@ int main(int argc, char *argv[]) {
 
     // 絶対パスを生成
     if (sprintf(filename, "/home/elab/udp/log/send_n%d_%s.txt", self_id, date) < 0) {
+    // 外での実験
+    // if (sprintf(filename, "/home/elab/udp/log/out_send_n%d_%s.txt", self_id, date) < 0) {
     // 自宅pc用
     // if (sprintf(filename, "/home/kentaro/kenkyu/wafl_modeltransfer/log/send_n%d_%s.txt", self_id, date) < 0) {
         perror("sprintf");
@@ -132,7 +134,7 @@ int main(int argc, char *argv[]) {
         /* 5~7秒のインターバル */
         // ここの演算がボトルネックになっている可能性？
         // データリンク層でCAする過程で送信間隔にゆらぎが生じるならこの余白は余分なのでは？
-        // unsigned int wait_sec = (rand() % 3) + 5;
+        unsigned int wait_sec = (rand() % 3) + 5;
         // unsigned int wait_sec = 5;
 
         while(1) {
@@ -161,7 +163,7 @@ int main(int argc, char *argv[]) {
         fflush(log_fp);
         close(fd);
         // 実験的にオフ
-        // sleep(wait_sec);
+        sleep(wait_sec);
     }
     fclose(log_fp);
     return EXIT_SUCCESS;
