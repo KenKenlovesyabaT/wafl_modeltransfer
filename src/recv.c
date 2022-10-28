@@ -22,11 +22,13 @@
 
 enum {CMD_NAME, PORT};
 
-#define FRAGMENT_SIZE 1024
-#define MAXBUFF 4096 /* バッファの最大値 */
+// #define FRAGMENT_SIZE 1024
+#define FRAGMENT_SIZE 2048
+// #define MAXBUFF 4096 /* バッファの最大値 */
+#define MAXBUFF FRAGMENT_SIZE + 8 /* バッファの最大値 */
 #define INTERVAL 1*1e3 /* UDPパケット送信間隔(単位:microsec) */
 #define PACKET_NUM 400 /* 想定する受信パケット数 */
-#define TIMEOUT_SEC 60 /* タイムアウト時間(selectの停止はmainからのkill signalで行う) */
+#define TIMEOUT_SEC 60 * 360 /* タイムアウト時間(selectの停止はmainからのkill signalで行う) */
 #define NODE_NUM 10 /* 実験時のノードの個数 */
 
 
