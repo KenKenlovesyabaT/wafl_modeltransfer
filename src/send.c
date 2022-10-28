@@ -25,7 +25,7 @@ enum {CMD_NAME, FILE_NAME, DST_IP, PORT};
 #define FRAGMENT_SIZE 2048
 #define MAXBUFF FRAGMENT_SIZE+8
 #define PACKET_NUM 400
-#define EPOCH_NUM 500
+#define EPOCH_NUM 1000
 #define INTERVAL 1*1e2 /* UDPパケット送信間隔(単位:microsec) */
 
 int main(int argc, char *argv[]) {
