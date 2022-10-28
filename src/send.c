@@ -131,7 +131,8 @@ int main(int argc, char *argv[]) {
 
         /* 5~7秒のインターバル */
         // ここの演算がボトルネックになっている可能性？
-        unsigned int wait_sec = (rand() % 3) + 5;
+        // データリンク層でCAする過程で送信間隔にゆらぎが生じるならこの余白は余分なのでは？
+        // unsigned int wait_sec = (rand() % 3) + 5;
         // unsigned int wait_sec = 5;
 
         while(1) {
@@ -159,7 +160,8 @@ int main(int argc, char *argv[]) {
         // ファイルIOが遅延の原因?
         fflush(log_fp);
         close(fd);
-        sleep(wait_sec);
+        // 実験的にオフ
+        // sleep(wait_sec);
     }
     fclose(log_fp);
     return EXIT_SUCCESS;
