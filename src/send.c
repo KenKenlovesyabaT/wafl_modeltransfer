@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
     time_t t;
     struct tm* tmp;
     uint8_t self_id;
-    char date[25];
+    char date[30];
     char filename[200];
     FILE *log_fp;
     struct ifreq ifr;
@@ -154,7 +154,7 @@ int main(int argc, char *argv[]) {
 
         t = time(NULL);
         tmp = localtime(&t);
-        if (strftime(date, sizeof(date) - 1, "mon%m_d%d_h%H_min%M", tmp) == 0) {
+        if (strftime(date, sizeof(date) - 1, "mon%m_d%d_h%H_min%M_sec%S", tmp) == 0) {
             perror("strftime");
             exit(EXIT_FAILURE);
         }
