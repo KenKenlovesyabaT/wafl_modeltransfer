@@ -128,7 +128,7 @@ int main(int argc, char *argv[]) {
     }
 
     // 絶対パスを生成
-    if (sprintf(filename, "/home/elab/udp/log/recv_n%d_%s.txt", self_id, date) < 0) {
+    if (sprintf(filename, "/home/elab/udp/log/recv_n%d_%s.csv", self_id, date) < 0) {
     // 外での実験
     // if (sprintf(filename, "/home/elab/udp/log/out_recv_n%d_%s.txt", self_id, date) < 0) {
     // 自宅pc用
@@ -145,6 +145,9 @@ int main(int argc, char *argv[]) {
         perror("fopen(filename)");
         exit(EXIT_FAILURE);
     }
+
+    /* タイトル行の書き込み */
+    fprintf(log_fp,"node,epoch,fragment\n");
 
     /* ファイルの分割受信 */
     while(1) {

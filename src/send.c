@@ -99,7 +99,7 @@ int main(int argc, char *argv[]) {
     }
 
     // 絶対パスを生成
-    if (sprintf(filename, "/home/elab/udp/log/send_n%d_%s.txt", self_id, date) < 0) {
+    if (sprintf(filename, "/home/elab/udp/log/send_n%d_%s.csv", self_id, date) < 0) {
     // 外での実験
     // if (sprintf(filename, "/home/elab/udp/log/out_send_n%d_%s.txt", self_id, date) < 0) {
     // 自宅pc用
@@ -114,6 +114,9 @@ int main(int argc, char *argv[]) {
         perror("fopen(filename)");
         exit(EXIT_FAILURE);
     }
+
+    /* タイトル行の書き込み */
+    fprintf(log_fp,"epoch,time\n");
 
     /* ファイルの分割送信 */
     fragment_p = (uint32_t *)send_buff;
@@ -153,12 +156,12 @@ int main(int argc, char *argv[]) {
         }
 
         t = time(NULL);
-        tmp = localtime(&t);
-        if (strftime(date, sizeof(date) - 1, "mon%m_d%d_h%H_min%M_sec%S", tmp) == 0) {
-            perror("strftime");
-            exit(EXIT_FAILURE);
-        }
-        fprintf(log_fp,"epoch %d: transmission completed on %s.\n", epoch, date);
+        // tmp = localtime(&t);
+        // if (strftime(date, sizeof(date) - 1, "mon%m_d%d_h%H_min%M_sec%S", tmp) == 0) {
+        //     perror("strftime");
+        //     exit(EXIT_FAILURE);
+        // }
+        fprintf(log_fp,"%d,%d\n", epoch, t);
         // ファイルIOが遅延の原因?
         fflush(log_fp);
         close(fd);
