@@ -22,8 +22,9 @@
 
 enum {CMD_NAME, PORT};
 
-// #define FRAGMENT_SIZE 1024
-#define FRAGMENT_SIZE 2048
+// MTU = 1500
+#define FRAGMENT_SIZE 1024
+// #define FRAGMENT_SIZE 2048
 // #define MAXBUFF 4096 /* バッファの最大値 */
 #define MAXBUFF FRAGMENT_SIZE + 8 /* バッファの最大値 */
 #define INTERVAL 1*1e3 /* UDPパケット送信間隔(単位:microsec) */

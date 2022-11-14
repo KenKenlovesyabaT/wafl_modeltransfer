@@ -21,8 +21,9 @@
 
 enum {CMD_NAME, FILE_NAME, DST_IP, PORT};
 
-// #define FRAGMENT_SIZE 1024
-#define FRAGMENT_SIZE 2048
+// MTU = 1500
+#define FRAGMENT_SIZE 1024
+// #define FRAGMENT_SIZE 2048
 #define MAXBUFF FRAGMENT_SIZE+8
 #define PACKET_NUM 400
 #define EPOCH_NUM 800
@@ -137,8 +138,8 @@ int main(int argc, char *argv[]) {
         /* 5~7秒のインターバル */
         // ここの演算がボトルネックになっている可能性？
         // データリンク層でCAする過程で送信間隔にゆらぎが生じるならこの余白は余分なのでは？
-        unsigned int wait_sec = (rand() % 3) + 5;
-        // unsigned int wait_sec = 5;
+        // unsigned int wait_sec = (rand() % 3) + 5;
+        unsigned int wait_sec = 5;
 
         while(1) {
             *fragment_p = htonl(fragment_num);
