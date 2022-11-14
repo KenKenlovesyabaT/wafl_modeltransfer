@@ -135,11 +135,15 @@ int main(int argc, char *argv[]) {
         /* fragment_numの初期化 */
         int fragment_num = 0;
 
-        /* 5~7秒のインターバル */
-        // ここの演算がボトルネックになっている可能性？
+        /* 4~6秒のインターバル */
+        // recv側のコードとの兼ね合いで、wifiモジュールを半分の時間ずつ分け合ってる?
+        // 単独運用の場合、インターバル*2の時間で送信が行われたことが証拠か
+        // 本質的には、受信状態→送信の割り込み という形にしたほうが実態にそぐうはず
+        // その上でcollisionの発生状況等はインターバルを変数として検証すれば良い
+        // 端末が多い時に送信が遅れる原因については依然不明
         // データリンク層でCAする過程で送信間隔にゆらぎが生じるならこの余白は余分なのでは？
-        // unsigned int wait_sec = (rand() % 3) + 5;
-        unsigned int wait_sec = 5;
+        unsigned int wait_sec = (rand() % 3) + 4;
+        // unsigned int wait_sec = 5;
 
         while(1) {
             *fragment_p = htonl(fragment_num);
