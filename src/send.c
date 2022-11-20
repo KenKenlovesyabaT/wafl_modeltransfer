@@ -142,8 +142,8 @@ int main(int argc, char *argv[]) {
         // その上でcollisionの発生状況等はインターバルを変数として検証すれば良い
         // 端末が多い時に送信が遅れる原因については依然不明
         // データリンク層でCAする過程で送信間隔にゆらぎが生じるならこの余白は余分なのでは？
-        unsigned int wait_sec = (rand() % 3) + 4;
-        // unsigned int wait_sec = 5;
+        // unsigned int wait_sec = (rand() % 3) + 4;
+        unsigned int wait_sec = 5;
 
         while(1) {
             *fragment_p = htonl(fragment_num);
